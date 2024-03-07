@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "973497471772",
+    "project_id": "mindfulmoments-f557a",
+    "storage_bucket": "mindfulmoments-f557a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973497471772:android:e1d10d2d02b62c7b6220d9",
+        "android_client_info": {
+          "package_name": "com.example.mindfulmoments"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYgOwGcZztPqo4_LGXos4qQttT2SmEEUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
