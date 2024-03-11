@@ -6,6 +6,7 @@ import '../theme/colors.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
+  
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -13,6 +14,19 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   var _isObscured;
+
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
 
   @override
   void initState() {
