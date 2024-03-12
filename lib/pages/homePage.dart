@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:mindfulmoments/pages/auth.dart';
+import 'package:mindfulmoments/pages/authentication.dart';
 
 class HomePage extends StatelessWidget {
    HomePage({super.key});
@@ -13,7 +12,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _title(){
-    return const Text('Firebase Auth');
+    return const Text('Sign Up');
   }
 
   Widget _userUid(){
@@ -34,13 +33,13 @@ class HomePage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _userUid(),
-            _signOutButton(),
+            _signOutButton()
           ],
         ),
       ),

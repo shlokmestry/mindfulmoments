@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'auth.dart';
-import 'home_page.dart';
-import 'login_register_page.dart';
+import 'package:mindfulmoments/pages/authentication.dart';
+import 'package:mindfulmoments/screens/loginpage.dart';
+import 'homePage.dart';
+
 
 class WidgetTree extends StatefulWidget {
   const WidgetTree({super.key});

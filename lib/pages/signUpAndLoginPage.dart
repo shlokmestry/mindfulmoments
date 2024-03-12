@@ -1,28 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mindfulmoments/pages/authentication.dart';
-import '../theme/colors.dart';
+import 'package:mindfulmoments/theme/colors.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpAndLoginPage extends StatefulWidget {
+  const SignUpAndLoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpAndLoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  var _isObscured;
-
-    @override
-  void initState() {
-    super.initState();
-    _isObscured = true; 
-  }
-
+class _LoginPageState extends State<SignUpAndLoginPage> {
   String? errorMessage = '';
   bool isLogin = true;
-  bool isRegistering = false;
 
    final TextEditingController _controllerEmail = TextEditingController();
    final TextEditingController _controllerPassword = TextEditingController();
@@ -66,10 +57,10 @@ class _LoginPageState extends State<LoginPage> {
       children: [
          Row(
           children: [
-            Padding(padding: const EdgeInsets.only(left: 10),
+            Padding(padding: EdgeInsets.only(left: 25),
              child: Text(
               labelText,
-            style: const TextStyle(
+            style: TextStyle(
               color: AppColors.blackColor,
               fontSize: 20,
               fontWeight: FontWeight.w700
@@ -82,7 +73,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
         TextFormField(
               controller: controller,
-              obscureText: title == 'Password' ? _isObscured : false,
               decoration: InputDecoration(
                 hintText: hintText,
                 fillColor: AppColors.whiteColor,
@@ -91,16 +81,6 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                suffixIcon: title == 'Password' ? IconButton(
-                  onPressed: (){
-                    setState(() {
-                      _isObscured = !_isObscured;
-                    });
-                  }, icon: Icon(_isObscured ? Icons.visibility : Icons.visibility_off,
-                  color: AppColors.blackColor,
-                  ),
-
-                  ) : null,
               ),
               
             ),
@@ -125,8 +105,7 @@ class _LoginPageState extends State<LoginPage> {
           )
         ),
         onPressed: isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
-        child: Text(isLogin ? 'SignIn' : 'SignUp',
-        style: TextStyle(color: AppColors.whiteColor),)),
+        child: Text(isLogin ? 'Sign In' : 'Sign Up')),
       );
   
    }
@@ -134,11 +113,11 @@ class _LoginPageState extends State<LoginPage> {
    Widget _loginOrRegisterButton(){
     return RichText(text: TextSpan(
       children: [
-         TextSpan(
-          text: isRegistering ? "Already have an account? " : "Don't have an account? ",
+        const TextSpan(
+          text: "Don't have an account?",
           style: TextStyle(color: AppColors.blackColor, fontSize: 15)
         ),
-        TextSpan(text: isLogin ? 'SignUp' : 'SignIn',
+        TextSpan(text: isLogin ? 'Sign Up' : 'Login',
         style: const TextStyle(
           color: AppColors.blackColor,
           fontSize: 15,
@@ -148,68 +127,33 @@ class _LoginPageState extends State<LoginPage> {
         ..onTap = (){
           setState(() {
             isLogin = !isLogin;
-            isRegistering = !isRegistering;
           });
         }
         )
       ]
     ));
    }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      appBar: AppBar(
+        title: _title(),
+      ),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
         child: Column(
-          children: [
-            const SizedBox(height: 80),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(padding: EdgeInsets.only(left: 15)),
-                Icon(
-                  Icons.arrow_back,
-                  size: 30,
-                ),
-                Padding(padding: EdgeInsets.only(right: 125)),
-                Text(
-                  'Login',
-                  style: TextStyle(
-                      color: AppColors.blackColor,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700),
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-          
-            const SizedBox(
-              height: 20,
-            ),
-            Row(children: [
-              const Padding(padding: EdgeInsets.only(left: 10)),
-              SizedBox(
-                width: 390,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    _entryField('Email Address', _controllerEmail),
-                    const SizedBox(height: 20,),
-                    _entryField('Password', _controllerPassword),
-                    _errorMessage(),
-                    _submitButton(),
-                    _loginOrRegisterButton()
-                  ],
-                ),
-              ),
-            ]),
-            const SizedBox(
-              height: 20,
-            ),
-          ],
+           crossAxisAlignment: CrossAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: <Widget>[
+            _entryField('Email Address', _controllerEmail),
+            const SizedBox(height: 20,),
+            _entryField('Password', _controllerPassword),
+            _errorMessage(),
+            _submitButton(),
+            _loginOrRegisterButton(),
+           ],
         ),
       ),
     );

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mindfulmoments/pages/widget_tree.dart';
+import 'package:mindfulmoments/pages/widgetTree.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 
